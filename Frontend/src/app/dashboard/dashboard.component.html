@@ -1,0 +1,150 @@
+<ngx-ui-loader *ngIf="!loader"></ngx-ui-loader>
+<!-- <div ngxUiLoaderBlurred (blur)="10">
+    <div class="card-top container-fluid">
+        <div class="container">
+            <div class="card_grid">
+                <div class="item" (click)="highlight()">
+                    <a type="button" (click)="filter('')">
+                        <img src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="">
+                        <h6>All products</h6>
+                    </a>
+                </div>
+                <div class="item" (click)="highlight()">
+                    <a (click)="filter('Electronics')">
+                        <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">
+                        <h6>Electronics</h6>
+                    </a>
+                </div>
+                <div class="item" (click)="highlight()">
+                    <a (click)="filter('Jewelery')">
+                        <img style="height: 100px; width: 120px; margin-top: 30px;"
+                            src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50"
+                            alt="">
+                        <h6>Jewelery</h6>
+                    </a>
+                </div>
+
+                <div class="item" (click)="highlight()">
+                    <a (click)="filter('Fashion')">
+                        <img src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100" alt="">
+                        <h6>Fashion</h6>
+                    </a>
+                </div>
+            </div>
+
+        </div> -->
+<!-- </div> -->
+<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
+
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor"
+        aria-controls="navbarColor" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <!-- <div class="collapse navbar-collapse" id="navbarColor">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">Electronics</a> </li>
+                <li class="nav-item"><a class="nav-link" href="#">Fashion</a> </li>                
+                <li class="nav-item "><a class="nav-link" href="#">Jewellery</a> </li>
+            </ul>        
+        </div> -->
+
+</nav>
+<div class="">
+    <button (click)="sidenavbardropdown()"class="btn btn-default">Filters<span class="fa fa-filter pl-1"></span></button>
+</div>
+<div *ngIf="hide">
+<div id="mobile-filter">
+
+    <div>
+        <h6 class="p-1 border-bottom">Filter By</h6>
+
+    </div>
+
+</div>
+<section id="sidebar" >
+    <!-- <div>
+            <h6 class="p-1 border-bottom">Electronics</h6>
+            <ul>
+                <li><a href="#">Hard disk</a></li>
+                <li><a href="#">TV</a></li>
+                <li><a href="#">Headphone</a></li>
+               
+            </ul> -->
+    <!-- </div> -->
+    <div>
+        <h6 class="p-1 border-bottom">Filter By</h6>
+
+        <select id="sort-by" (change)="sort($event)">
+            <option value="" selected disabled hidden>Sort By</option>
+
+            <option value="Low">Low to High</option>
+            <option value="High">High to Low</option>
+        </select>
+        <br><br>
+        <p class="mb-2">FILTER BY CATEGORIES</p>
+        <ul class="list-group myDiv">
+            <li class="list-group-item list-group-item-action mb-2 rounded"><a routerLinkActive="active"
+                    (click)="filter('')">
+                    <span></span>All Products
+                </a></li>
+            <li class="list-group-item list-group-item-action mb-2 rounded"><a (click)="filter('Electronics')">
+                    <span></span>Electronics
+                </a></li>
+            <li class="list-group-item list-group-item-action mb-2 rounded"><a (click)="filter('Fashion')">
+                    <span></span>Fashion
+                </a></li>
+
+            <li class="list-group-item list-group-item-action mb-2 rounded"><a (click)="filter('Jewelery')">
+                    <span></span>Jewelery
+                </a></li>
+        </ul>
+    </div>
+    <div>
+        <h6>Price Range</h6>
+        <form class="ml-md-2">
+            <div class="range">
+                <label for="boring" class="list-group-item list-group-item-action mb-2 rounded"
+                    (click)="filterRange(500, 2000)">500-2000</label>
+            </div>
+            <div class="range">
+
+                <label for="ugly" class="list-group-item list-group-item-action mb-2 rounded"
+                    (click)="filterRange(2000, 10000)">2000-10000</label>
+            </div>
+            <div class="range">
+
+                <label for="notugly" class="list-group-item list-group-item-action mb-2 rounded"
+                    (click)="filterRange(10000, 50000)">10000-50000</label>
+            </div>
+        </form>
+    </div>
+</section>
+
+</div>
+<div class="container mt-3">
+    <div class="row">
+        <ng-container *ngFor="let item of filterCategory  | filter:searchKey:'title':'description'">
+            <div class="col-md-3 mt-2">
+                <div class="card" 
+            >
+                    <img src="{{item.imageUrl}}" alt="">
+                    <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">
+                        {{item.title}}</h5>
+                    <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">
+                        {{item.description}}</p>
+                    <p><strong>Price:</strong> ${{item.price}}</p>
+
+
+                    <button class="btn btn-primary" (click)="addtocart(item)">Add to cart</button>
+                </div>
+            </div> 
+
+        </ng-container>
+
+
+        <div>
+
+        </div>
+
+        <br>
+    </div>

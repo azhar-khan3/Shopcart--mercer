@@ -1,0 +1,354 @@
+<nav class="navbar  fixed-top navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <b>
+      <h3>SHOPCART</h3>
+    </b>
+
+  </div>
+</nav>
+
+<br>
+
+<!-- <section class="vh-100" style="background-color: #eee;">
+  <div>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="h3 fw-bold mb-3">REGISTER HERE</p>
+
+                <form (ngSubmit)="register(form)" [formGroup]="form" class="mx-1 mx-md-4">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" formControlName="name" id="form3Example1c" class="form-control" />
+                      <label class="form-label" for="form3Example1c">Your Name</label>
+
+                      <div *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.get('name')?.errors?.['required']">
+                          * Name is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" formControlName="username" id="form3Example3c" class="form-control" />
+                      <label class="form-label" for="form3Example3c">Username</label>
+                      <div
+                        *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.get('username')?.errors?.['required']">
+                          * Username is required.
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" formControlName="mobile" id="form3Example3c" class="form-control" />
+                      <label class="form-label" for="form3Example3c">Mobile No.</label>
+                      <div
+                        *ngIf="form.get('mobile')?.invalid && (form.get('mobile')?.dirty || form.get('mobile')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.get('mobile')?.errors?.['required']">
+                          * Mobile number is required.
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <select id="exampleInputPassword1" style="height:35px; width:200px;" formControlName="role">
+
+                        <option>Admin</option>
+                        <option>Customer</option>
+
+                      </select>
+                      <br>
+                      <label class="form-label" for="form3Example3c">Role</label>
+
+
+                    </div>
+                  </div>
+
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" formControlName="password" id="form3Example4c" class="form-control" />
+                      <label class="form-label" for="form3Example4c">Password</label>
+
+                      <div
+                        *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.get('password')?.errors?.['required']">
+                          * Password is required.
+                        </div>
+
+                        <div *ngIf="form.get('password')?.errors?.['pattern']">
+                          password must contain at least eight characters, at least one number and both lower and
+                          uppercase letters and special characters
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" formControlName="confirm_password" id="form3Example4cd"
+                        class="form-control" />
+                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                      <div
+                        *ngIf="form.get('confirm_password')?.invalid && (form.get('confirm_password')?.dirty || form.get('confirm_password')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="form.get('confirm_password')?.errors?.['required']">
+                          * Enter your password again.
+                        </div>
+
+                        <div *ngIf="form.get('confirm_password')?.errors?.['confirmedValidator']">
+                          Password and Confirm Password must be match.
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+
+                  <div class="text-center text-lg-start mt-4 pt-2">
+                    <button type="button" class="btn btn-primary btn-lg"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem;" type="submit"
+                      [disabled]="!form.valid">Register</button>
+                    <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a type="button"
+                        routerLink="/login" class="link-danger">Login</a>
+                    </p>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="/assets/reg.jpg" class="img-fluid" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ -->
+
+
+
+
+  
+ <ngx-ui-loader *ngIf="loader"></ngx-ui-loader>
+
+
+<section id="bg-image" class="vh-100 gradient-custom">
+  <div class="container py-1 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body">
+            <h3>Register Here</h3>
+            <form  [formGroup]="form">
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" formControlName="firstName" id="firstName" class="form-control" />
+                    <label class="form-label" for="firstName">First name</label>
+                  </div>
+
+                  <div *ngIf="form.get('firstName')?.invalid && (form.get('firstName')?.dirty || form.get('firstName')?.touched)"
+                    class="text-danger">
+                    <div *ngIf="form.get('firstName')?.errors?.['required']">
+                      *First  Name is required.
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" formControlName="lastName" id="lastName" class="form-control" />
+                    <label class="form-label" for="lastName">Last Name</label>
+                  </div>
+
+                  <div
+                    *ngIf="form.get('lastName')?.invalid && (form.get('lastName')?.dirty || form.get('lastName')?.touched)"
+                    class="text-danger">
+                    <div *ngIf="form.get('lastName')?.errors?.['required']">
+                      * Last Name is required.
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                
+              </div>
+
+ 
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" formControlName="username" id="lastName" class="form-control" />
+                    <label class="form-label" for="lastName">Username</label>
+                  </div>
+
+                  <div
+                    *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)"
+                    class="text-danger">
+                    <div *ngIf="form.get('username')?.errors?.['required']">
+                      * Username is required.
+                    </div>
+                  </div>
+                </div>
+
+                 
+                <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="file" formControlName="file" id="lastName"  (change)="onChange($event)" class="form-control" />
+                  <label class="form-label" for="lastName">Upload Image</label>
+                </div>
+              </div>
+              </div>
+              
+
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                  <div class="form-outline datepicker w-100">
+                    <input type="text" formControlName="mobile" class="form-control"
+                      id="birthdayDate" />
+                    <label for="birthdayDate" class="form-label">Mobile</label>
+                    <div
+                      *ngIf="form.get('mobile')?.invalid && (form.get('mobile')?.dirty || form.get('mobile')?.touched)"
+                      class="text-danger">
+                      <div *ngIf="form.get('mobile')?.errors?.['required']">
+                        * Mobile number is required.
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="col-12">
+
+                    <select class="select" style="width:290px; height: 39px;" formControlName="role">
+                      <option value="1" disabled>Choose option</option>
+                      <option>Admin</option>
+                      <option>Customer</option>
+                    </select>
+                    <br>
+                    <label class="form-label select-label">Role</label>
+
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="password" formControlName="password" id="phoneNumber"
+                      class="form-control" />
+                    <label class="form-label" for="phoneNumber">Password</label>
+                  </div>
+
+
+                  <div
+                    *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)"
+                    class="text-danger">
+                    <div *ngIf="form.get('password')?.errors?.['required']">
+                      * Password is required.
+                    </div>
+
+                    <div *ngIf="form.get('password')?.errors?.['pattern']">
+                      Password must be minimum eight characters, at least one letter, one number and one special
+                      character:
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="password" formControlName="confirm_password" id="phoneNumber"
+                      class="form-control" />
+                    <label class="form-label" for="phoneNumber">Repeat Your Password</label>
+                  </div>
+
+
+                  <div
+                    *ngIf="form.get('confirm_password')?.invalid && (form.get('confirm_password')?.dirty || form.get('confirm_password')?.touched)"
+                    class="text-danger">
+                    <div *ngIf="form.get('confirm_password')?.errors?.['required']">
+                      * Enter your password again.
+                    </div>
+
+                    <div *ngIf="form.get('confirm_password')?.errors?.['confirmedValidator']">
+                      Password and Confirm Password must be match.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="text-center text-lg-start">
+                <button type="button" class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="register()" [disabled]="!form.valid"
+                  >Register</button>
+                &nbsp;&nbsp;
+                <span class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a type="button" routerLink="/login"
+                    class="link-danger">Login</a>
+                </span>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

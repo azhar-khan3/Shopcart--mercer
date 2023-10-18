@@ -1,0 +1,61 @@
+<app-header></app-header>
+
+<div class="container mt-3">
+    <div class="row" *ngFor ="let item of productData">
+        <div class="col-md-5">
+            <div class="product-box" > 
+                <img src="{{item.imageUrl}}"  class="img-fluid product-img">
+                <br>
+                <!-- <button class="btn btn-primary"  >Add to cart</button> -->
+            </div>
+           
+        </div>
+        <div class="col-md-7 col-sm-7">
+            <h3>{{item.title}}</h3>
+            <p>{{item.description}}</p>
+            <hr class="product-details-hr">
+            <div class="icon-bg">
+                <img src="/assets/product-return.png" class="img-icon img-fluid">
+            </div>
+            <p>Non-Returnable</p>
+            <hr class="product-details-hr">
+            <div class="product-details">
+                <div class="row product-details-row py-0">
+                    <div class="col-md-2 col-sm-2">
+                        
+                        <b>Category: </b>
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                        <p>{{item.category}}</p>
+                    </div>
+                </div>
+               
+                <div class="row product-details-row py-0">
+                    <div class="col-md-2">
+                        <b>Price: </b>
+                    </div>
+                    <div class="col-md-10">
+                        <p>{{item.price}}</p>
+                    </div>
+                </div>
+                <div class="row product-details-row py-0">
+                    <div class="col-md-2">
+                        <b>Brand: </b>
+                    </div>
+                    <div class="col-md-10">
+                        <p>Zara</p>
+                    </div>
+                  
+                </div>
+            </div>
+            <hr class="product-details-hr">
+            <h5>About This Item</h5>
+            <ul>
+                <li>Studies have shown that cranberry helps block the attachment of the E. Coli bacteria to the urinary bladder wall</li>
+                <li>Take AZO Cranberry concentrated tablets regularly to help maintain a healthy urinary tract</li>
+                <li>50 Count</li>
+            </ul>
+            <hr class="product-details-hr">            
+        </div>
+    </div>
+</div>

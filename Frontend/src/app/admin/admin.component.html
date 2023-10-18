@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <b>
+      <h3>SHOPCART</h3>
+    </b>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/admin">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu dropdown-primary" style="margin-top: 0px;">
+            <li><a class="dropdown-item" routerLink="/admin/user">User</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/product">Products</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+
+<div class="mycard col d-flex justify-content-center">
+  <div class="row">
+    <div class="card" style="width:28rem;">
+      <img src="../../../assets/shopping.jpg" class="image1 card-img-top" height="300px" alt="...">
+      <div class="card-body text-center">
+        <a href="#" routerLink="/admin/product" class="btn btn-primary btn-lg">Go To Product</a>
+      </div>
+    </div>
+    &nbsp; &nbsp; &nbsp;
+    <div class="card" style="width:28rem;">
+      <img src="../../../assets/customer.jpg" class="image1 card-img-top" height="300px" alt="...">
+      <div class="card-body text-center">
+        <a href="#" routerLink="/admin/user" class="btn btn-primary btn-lg">Go To Customer</a>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+
+<br>
+<br>

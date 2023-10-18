@@ -1,0 +1,208 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <b>
+      <h3>SHOPCART</h3>
+    </b>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/admin">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu dropdown-primary">
+            <li><a class="dropdown-item" routerLink="/admin/user">User</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/product">Products</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<ngx-ui-loader *ngIf="showAdd"></ngx-ui-loader>
+
+<div ngxUiLoaderBlurred (blur)="10">
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="table_wrapper">
+        <table class="table" border="1">
+          <thead>
+            <tr>
+
+              <th scope="col">Product Title</th>
+              <th scope="col">Product Description</th>
+              <th scope="col">Product Price</th>
+              <th scope="col">Product Image</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of productsList  | filter:searchKey:'title':'description'">
+
+              <td>{{row.title}}</td>
+              <td>{{row.description}}</td>
+              <td>{{row.price}}</td>
+              <td><img src="{{row.imageUrl}}" height="50px" width="50px"></td>
+              <td><button type="button" class="btn btn-danger" (click)="deleteProduct(row)">Delete</button> &nbsp;&nbsp;
+                <button data-controls-modal="exampleModal" (click)="onEdit(row)" class="btn btn-warning"
+                  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div>
+      <button type="button" class="btn btn-primary show-modal" (click)="clickAddProduct()" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Add More
+        Product</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="showAdd" id="exampleModalLabel">Add Your Product Here</h5>
+        <h5 class="modal-title" *ngIf="showUpdate" id="exampleModalLabel">Update Your Product Details</h5>
+        <button type="button" (click)="cancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formvalue" class="row g-3">
+          <div class="col-md-6">
+            <label for="exampleInputEmail1" class="center-block" class="form-label">Product title</label>
+            <input type="text" class="form-control" formControlName="title">
+
+
+            <div
+              *ngIf="formvalue.get('title')?.invalid && (formvalue.get('title')?.dirty || formvalue.get('title')?.touched)"
+              class="text-danger">
+              <div *ngIf="formvalue.get('title')?.errors?.['required']">
+                * Title is required.
+              </div>
+
+              <div *ngIf="formvalue.get('title')?.errors?.['pattern']">
+                * Only chatacters are allowed
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Product description</label>
+            <input type="text" formControlName="description" class="form-control" id="exampleInputPassword1" required>
+            <div
+              *ngIf="formvalue.get('description')?.invalid && (formvalue.get('description')?.dirty || formvalue.get('description')?.touched)"
+              class="text-danger">
+              <div *ngIf="formvalue.get('description')?.errors?.['required']">
+                * Description is required
+              </div>
+
+              <div *ngIf="formvalue.get('description')?.errors?.['minlength']">
+                * Description atleast 4 characters
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-8">
+            <label for="exampleInputPassword1" class="form-label">Upload Image</label>
+            <input type="file" formControlName="file" id="file" (change)="onChange($event)" class="form-control"
+              id="exampleInputPassword1">
+          </div>
+          <span [hidden]="!imageLoader" style="height: 40px; width:40px; margin-top: 45px;" class="spinner-border"
+            role="status">
+          </span>
+
+          <img [src]="imageSrc" [hidden]="imageLoader" *ngIf="imageSrc" class="mt-5" style="height: 50px; width:50px"
+            (load)="this.imageLoader = false;">
+
+
+
+
+
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Product price</label>
+            <input type="number" formControlName="price" class="form-control" id="exampleInputPassword1">
+
+            <div
+              *ngIf="formvalue.get('price')?.invalid && (formvalue.get('price')?.dirty || formvalue.get('price')?.touched)"
+              class="text-danger">
+              <div *ngIf="formvalue.get('price')?.errors?.['required']">
+                Enter the price of the product
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-6">
+
+            <label for="exampleInputPassword1" class="form-label">Category</label> <br>
+            <select id="exampleInputPassword1" style="height:35px; width:200px;" formControlName="category">
+              <option>Select</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Jewelery</option>
+
+            </select>
+
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="cancel()" class="btn btn-secondary" id="cancel"
+          data-bs-dismiss="modal">Close</button>
+
+
+        <div *ngIf="showAdd">
+          <button type="button" class="btn btn-primary" (click)="postData()" [disabled]="!formvalue.valid">Add
+            Product
+
+
+          </button>
+        </div>
+
+
+
+        <!-- <button *ngIf="loader" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Saving Product...
+        </button> -->
+        <br>
+
+
+
+        <!--       
+        <div  *ngIf="loader" class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+          </div>
+       -->
+        <button type="button" *ngIf="showUpdate" (click)="updateProductDeatils()"
+          class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

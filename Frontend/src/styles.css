@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+.dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+}
+.table>:not(:first-child) {
+    border-top: 1px solid currentColor;
+}
+.table tr{
+    border-top: .5px solid #000 !important;
+}
+@media only screen and (max-width: 600px) {
+    html,body{
+        overflow-x: hidden;
+        width: 100%;
+    }
+    .card_grid{
+        overflow-x: auto;
+    }
+    /* .navbar-light .navbar-toggler {
+        display: none;
+    } */
+    #searchBox{
+        order: 3;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .cart_btn{
+        margin-right: 15px;
+        margin-left: auto !important;
+    }
+    .table_wrapper{
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+  }

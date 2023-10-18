@@ -1,0 +1,302 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <b>
+        <h3>SHOPCART</h3>
+      </b>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/admin">Home</a>
+          </li>
+  
+          <li  class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Admin
+            </a>
+            <ul  class="dropdown-menu dropdown-primary">
+              <li><a class="dropdown-item" routerLink="/admin/user">User</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/product">Products</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+            </ul>
+          </li>
+  
+        </ul>
+  
+      </div>
+</div>  
+</nav>
+<br>
+
+<ngx-ui-loader *ngIf="showAdd"></ngx-ui-loader>
+
+<div ngxUiLoaderBlurred (blur)="10">
+    <div class="container">
+    <div class="row">
+        <div class="table_wrapper">
+            <table class="table" border="1">
+                <thead>
+                    <tr>
+    
+                        <th scope="col">Username</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">User Image</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of userList  | filter:searchKey:'firstName':'lastName'">
+    
+                        <td>{{row.username}}</td>
+                        <td>{{row.firstName}}</td>
+                        <td>{{row.lastName}}</td>
+                        <td>{{row.mobile}}</td>
+                        
+                        <td> <img src="{{row.imageUrl}}" height="50px" width="50px" alt=""></td>
+                        <td>{{row.role}}</td>
+                        <td><button type="button" class="btn btn-danger" (click)="deleteUser(row)">Delete</button>
+                            &nbsp;&nbsp;
+                            <button (click)="onEdit(row)" class="btn btn-warning" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+        <div>
+            <button type="button" class="text-center" class="btn btn-primary" (click)="clickAddUser()"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">Add Another
+                User</button>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="exampleModal" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User Here</h5>
+                <button type="button" (click)="cancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue" class="row g-3">
+
+
+
+
+
+
+                    <div class="col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">First Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" id="exampleInputPassword1"
+                            required>
+                        <div *ngIf="formValue.get('firstName')?.invalid && (formValue.get('firstName')?.dirty || formValue.get('firstName')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="formValue.get('firstName')?.errors?.['required']">
+                                * firstName is required
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    
+                    <div class="col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Last Name</label>
+                        <input type="text" formControlName="lastName" class="form-control" id="exampleInputPassword1">
+
+                        <div *ngIf="formValue.get('lastName')?.invalid && (formValue.get('lastName')?.dirty || formValue.get('lastName')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="formValue.get('lastName')?.errors?.['required']">
+                                * Enter the lastName of the user
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1" class="center-block" class="form-label">Username</label>
+                        <input type="text" class="form-control" formControlName="username">
+                        <div *ngIf="formValue.get('username')?.invalid && (formValue.get('username')?.dirty || formValue.get('username')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="formValue.get('username')?.errors?.['required']">
+                                * Username is required.
+                            </div>
+
+                            <div *ngIf="formValue.get('username')?.errors?.['minlength']">
+                                * Username atleast 4 characters
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1" class="center-block" class="form-label">Mobile</label>
+                        <input type="text" class="form-control" formControlName="mobile">
+                        <div *ngIf="formValue.get('mobile')?.invalid && (formValue.get('mobile')?.dirty || formValue.get('mobile')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="formValue.get('mobile')?.errors?.['required']">
+                                * Mobile is required.
+                            </div>
+
+                            <div *ngIf="formValue.get('mobile')?.errors?.['minlength']">
+                                * Mobile is Required
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div *ngIf="showAdd" class="col-md-6">
+                        <label for="exampleInputEmail1" class="center-block" class="form-label">Password</label>
+                        <input type="password" class="form-control" formControlName="password">
+                        <div *ngIf="formValue.get('password')?.invalid && (formValue.get('password')?.dirty || formValue.get('password')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="formValue.get('password')?.errors?.['required']">
+                                * Password is required.
+                            </div>
+
+                            <div *ngIf="formValue.get('password')?.errors?.['pattern']">
+                                Password must be in valid valid format
+                            </div>
+
+                        </div>
+
+                    </div>
+
+<!-- 
+                    <div class="col-md-6">
+                        <label class="form-label" class="center-block">Password</label>
+                        <input type="password" formControlName="password" id="phoneNumber"
+                          class="form-control" />
+                        
+                      </div>
+    
+    
+                      <div
+                        *ngIf="formValue.get('password')?.invalid && (formValue.get('password')?.dirty || formValue.get('password')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="formValue.get('password')?.errors?.['required']">
+                          * Password is required.
+                        </div>
+    
+                        <div *ngIf="formValue.get('password')?.errors?.['pattern']">
+                          Password must be minimum eight characters, at least one letter, one number and one special
+                          character:
+    
+    
+                        </div>
+                      </div>
+                  -->
+
+
+                      <div *ngIf="showAdd"  class="col-md-6">
+
+                        <div class="form-outline">
+                            <label class="form-label" for="phoneNumber">Repeat Your Password</label>
+                          <input type="password" formControlName="confirm_password" id="phoneNumber"
+                            class="form-control" />
+                        
+                        </div>
+      
+      
+                        <div
+                          *ngIf="formValue.get('confirm_password')?.invalid && (formValue.get('confirm_password')?.dirty || formValue.get('confirm_password')?.touched)"
+                          class="text-danger">
+                          <div *ngIf="formValue.get('confirm_password')?.errors?.['required']">
+                            * Enter your password again.
+                          </div>
+      
+                          <div *ngIf="formValue.get('confirm_password')?.errors?.['confirmedValidator']">
+                            Password and Confirm Password must be match.
+                          </div>
+                        </div>
+                      </div>
+
+
+                    <div class="col-md-6">
+
+                        <label for="exampleInputPassword1" class="form-label">Role</label> <br>
+                        <select id="exampleInputPassword1"   style="height:35px; width:200px;" formControlName="role" > 
+                         
+                        <option>Admin</option>
+                        <option>Customer</option>
+            
+                        </select>
+            
+                      </div>
+
+
+
+                    <div class="col-md-5">
+                        <label for="exampleInputPassword1" class="form-label">User Image</label>
+                        <input type="file" formControlName="file" (change)="onChange($event)" class="form-control"
+                            id="exampleInputPassword1">
+                            
+                           
+                        </div>
+                        <span [hidden]="!imageLoader" class="mt-5" style="height: 40px; width:40px; margin-top: 45px;" class="spinner-border" role="status"> </span>
+                        <img [src]="imageSrc" [hidden]="imageLoader" *ngIf="imageSrc" class="mt-5" style="height: 50px; width:50px;"  (load)="this.imageLoader = false;">
+
+                    <!-- &nbsp;
+                    &nbsp; &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp; &nbsp; &nbsp;
+                  
+              
+                -->
+                     <!-- <div class="col-md-5" style="margin-left: 60px;">
+
+                        <label for="exampleInputPassword1" class="form-label">Status : </label>
+                        <br>
+                        <label>Active</label> &nbsp;
+                        <input type="radio" id="exampleInputPassword1" formControlName="status" value="Active">
+                        &nbsp;&nbsp;
+                        <label>InActive</label> &nbsp;
+                        <input type="radio" id="exampleInputPassword1" formControlName="status" value="InActive">
+
+                    </div>  -->
+
+
+                   
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  (click)="cancel()" class="btn btn-secondary" id="cancel"  data-bs-dismiss="modal">Close</button>
+                <div *ngIf="showAdd">
+                    <button type="button" *ngIf="!loader" class="btn btn-primary" (click)="postData()"
+                        [disabled]="!formValue.valid">Add
+                        User</button>
+                </div>
+                <button *ngIf="loader" class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Saving User...
+                </button>
+                <button type="button" *ngIf="showUpdate" (click)="updateUsertDeatils()"
+                    class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
