@@ -28,10 +28,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -50,7 +46,6 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProfileComponent,
     EditProfileComponent,
     CheckoutComponent,
-    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

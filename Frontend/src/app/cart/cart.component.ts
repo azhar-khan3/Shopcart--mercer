@@ -92,7 +92,6 @@ export class CartComponent implements OnInit {
       this.getCartDetails = JSON.parse(localStorage.getItem('localCart')!);
       // let index: number = this.getCartDetails.indexOf(getCartDetail);
       for (let i = 0; i < this.getCartDetails.length; i++) {
-
         console.log("in the loop", this.getCartDetails.length);
         if (this.getCartDetails[i].id === getCartDetail) {
           this.getCartDetails.splice(i, 1);

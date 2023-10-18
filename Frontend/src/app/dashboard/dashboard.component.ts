@@ -36,10 +36,8 @@ export class DashboardComponent implements OnInit {
   productId!: string;
   hide = false;
   productFilterApi = environment.productFilterApi;
-
-
-
   filterData = new BehaviorSubject<any>(this.category);
+
   reloadPage() {
     window.location.reload();
   }
@@ -51,7 +49,6 @@ export class DashboardComponent implements OnInit {
   }
   sidenavbardropdown() {
     this.hide = !this.hide
-
   }
 
   ngOnInit() {
@@ -66,7 +63,6 @@ export class DashboardComponent implements OnInit {
       .subscribe((res: any) => {
         this.productList = res;
         this.filterCategory = res;
-
         this.productList.forEach((a: any) => {
           Object.assign(a, { quantity: 1, total: a.price });
         });
@@ -90,9 +86,6 @@ export class DashboardComponent implements OnInit {
     this.cartService.addCart(item);
     this.showToasterSuccess();
   }
-
-
-
 
   onProduct(item: any) {
     sessionStorage.removeItem("productId")
@@ -125,7 +118,6 @@ export class DashboardComponent implements OnInit {
   filter(category: string) {
     var addclass = 'active';
     var $div = $(".myDiv li").click(
-
       function () {
         // $(this).css("background-color", "#FFFF00");
         $div.removeClass(addclass);
@@ -135,13 +127,11 @@ export class DashboardComponent implements OnInit {
     //add http param
     const params = new HttpParams()
       .set('category', category)
-
     this.filterData.next(category);
     this.value = true;
     this.http.get<any>(this.productFilterApi, { params }).subscribe(res => {
       this.filterCategory = res;
       this.value = false;
-
     });
     // this.filterCategory = this.productList.filter((a:any)=>{
     //   if(a.category == category || category==''){
@@ -152,7 +142,6 @@ export class DashboardComponent implements OnInit {
     // );
   }
 
-
   filterRange(minimumPrice: number, maximumPrice: number) {
     // for(value1=775; value1<15000; value1++){
     var addclass = 'active';
@@ -160,7 +149,6 @@ export class DashboardComponent implements OnInit {
       function () {
         $div.removeClass(addclass);
         $(this).addClass(addclass);
-
       }
     );
 
@@ -174,18 +162,15 @@ export class DashboardComponent implements OnInit {
 
     //without param
     // this.http.get<any>(this.productFilterApi + "/filter?category=" + this.category + "&" + "min=" + minimumPrice + "&" + "max=" + maximumPrice)
-
     this.http.get<any>(this.productFilterApi, { params })
       .subscribe(res => {
         // this.filterCategory = data;
         this.filterCategory = res;
-
         // = res.filter((product: any) => {
         //   return product.price >= minimumPrice
         //     && product.price <= maximumPrice
         // });
         // this.location.go('/home/');
-
       });
   }
 
@@ -212,16 +197,10 @@ export class DashboardComponent implements OnInit {
           })
           break;
         }
-
     }
     return this.filterCategory;
   }
 }
-
-
-
-
-
 
   // sort(event: any) {
 

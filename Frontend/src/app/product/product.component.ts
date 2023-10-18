@@ -151,10 +151,8 @@ export class ProductComponent {
         let ref = document.getElementById('cancel')
         ref?.click();
         this.getProductAll();
-      
         // this.reloadPage();
         // this.router.navigate(['/admin/product']);
-
       },
         err => {
           this.showToasterError();
@@ -195,7 +193,6 @@ export class ProductComponent {
     // this.formvalue.controls['category'].setValue(row.category);
     // this.formvalue.control s['file'].setValue(this.fileName);
     this.formvalue.patchValue(row);
-
   }
 
 
@@ -205,7 +202,6 @@ export class ProductComponent {
     this.prodobj.price = this.formvalue.value.price;
     this.prodobj.file = this.formvalue.value.file;
     this.prodobj.category = this.formvalue.value.category;
-
     this.productService.updateProduct(this.prodobj.id, this.prodobj)
       .subscribe(res => {
         this.showToasterSuccess();
@@ -219,7 +215,4 @@ export class ProductComponent {
         }
       )
   }
-
-
-
 }

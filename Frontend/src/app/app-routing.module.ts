@@ -11,7 +11,6 @@ import { RoleGuard } from './guards/role.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -37,7 +36,6 @@ const routes: Routes = [
   { path: "edit-profile", component: EditProfileComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: "checkout", component: CheckoutComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: "register", component: RegisterComponent },
-  { path: "product-details", component: ProductDetailsComponent },
   { path: "404", component: NotFoundComponent },
   { path: "**", redirectTo: "404" }
 ];

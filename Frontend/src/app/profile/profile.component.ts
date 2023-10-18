@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit {
   customerId!: number;
   customer: any = [];
   imageSrc!: string;
-
   image!: string;
   imageLoader = false;
   loader = false;
@@ -30,18 +29,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomer();
     this.myForm();
-
   }
 
    getCustomer() {
    this.customer=  this.user.data.subscribe(res => {
       this.customer = [res];
     })
-
-
   }
   onChange(event: any) {
-
     this.file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(this.file);
@@ -71,7 +66,4 @@ export class ProfileComponent implements OnInit {
       this.getCustomer();
     })
   }
-
-
-
 }

@@ -10,22 +10,16 @@
               <div  *ngFor="let item of customer" class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                 <img  [src]="item.imageUrl"
-                  alt="Avatar" class="img-fluid my-5"  style="width: 80px;height:  100px;" />
-                
-        
-                <h5 *ngFor="let item of customer">{{item.firstName}} {{item.lastName}}</h5>
+                  alt="Avatar" class="img-fluid my-5"  style="width: 80px;height:  100px;" />       
+               <h5 *ngFor="let item of customer">{{item.firstName}} {{item.lastName}}</h5>
                 <form  [formGroup]="formvalue">
                   <label  class="custom-file-upload">
                     <input type="file" (change)="changeImage($event)"/>
-                    Upload Image
-                   
+                    Upload Image                  
                   </label>
-                 <br>
-                 
+                 <br>                
                  <!-- <button type="submit" class="btn btn-primary btn-sm" (click)="changeImage()">Change</button> -->
-              </form>
-              
-                
+              </form>               
               </div>
               <div class="col-md-8" >
                 <div class="card-body p-4">
@@ -34,7 +28,6 @@
                   </h6>
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
-
                     <div class="col-6 mb-3">
                         <h6>Name</h6>
                         <p *ngFor="let item of customer" class="text-muted">{{item.firstName}} {{item.lastName}}</p>
@@ -51,11 +44,8 @@
                         <h6>Role</h6>
                         <p *ngFor="let item of customer" class="text-muted">{{item.role}}</p>
                       </div>
-                  </div>
-                 
-                  <hr class="mt-0 mb-4">
-                
-                 
+                  </div>                
+                  <hr class="mt-0 mb-4">                
                 </div>
               </div>
             </div>

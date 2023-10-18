@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-
-
   ngOnInit(): void { }
 
   showToasterError() {
@@ -59,7 +57,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(value.username, value.password).subscribe(
         data => {
           this.responsedata = data;
-
           this.currentrole = this.authService.getRoleByToken(this.authService.getUserToken());
           if (this.currentrole == 'Admin') {
             this.router.navigate(['admin']);

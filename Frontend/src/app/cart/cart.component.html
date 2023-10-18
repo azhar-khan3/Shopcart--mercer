@@ -1,70 +1,4 @@
-<app-header></app-header>
-<br>
-<!-- 
-<ng-container *ngIf="getCartDetails.length !=0">
-    <div class="container">
-        <div class="card-table">
-            <div class="cart-product">
-                <table class="table table-responsive" border="1"
-                
-                >
-                    <thead>
-                        <tr>
-                            <th>Sr.No</th>
-                            <th>Product Name</th>
-                            <th>Product Image</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-    
-                            <th>Total Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                   
-                             <tr *ngFor="let item of getCartDetails; let i = index" class="item"> 
-                            <td>{{i+1}}</td>
-                            <td>{{item.title}}</td>
-                            <td><img style="height: 60px; width: 80px;" src="{{item.imageUrl}}" alt=""></td>
-                            <td >{{item.description}}</td>
-                            <td>{{item.price}}</td>
-
-                        
-                        
-
-                             <td class="content">
-                                <button type="button" class="btn1" (click)="inc(item._id, item.quantity)"><i class="fa fa-plus"></i></button>
-                                 
-                               <b><span>{{item.quantity}}</span></b> 
-            
-                                <button type="button" class="btn1" (click)="dec(item._id, item.quantity)"><i class="fa fa-minus"></i></button>
-                             </td> 
-
-                            <td style="width: 12%;">{{item.quantity * item.price | number}}</td>
-                            <td>
-                                <button (click)="removeItem(getCartDetails.id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
-                            <td><button routerLink="/home" class="btn btn-primary">Shop More</button></td>
-                            <td><button class="btn btn-success">Checkout</button></td>
-                    
-                                <td class="totals-value" id="cart-subtotal">
-                                    
-                                    <strong>Grand Total: {{alltotal}}</strong></td>
-                                
-                            
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</ng-container>
--->
+<app-header></app-header><br>
 <section class="h-100 h-custom">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -76,12 +10,8 @@
                                 <div class="">
                                     <div class="row d-flex justify-content-between align-items-center">
                                         <h1 class="fw-bold  text-black">Shopping Cart</h1>
-
                                     </div>
-
                                     <table class="table table-striped">
-
-
                                         <tr class="">
                                             <th class="" style="width:20%;">Image</th>
                                             <th class="" style="margin-left: 5px;">Product
@@ -90,13 +20,8 @@
                                             <th class=""> Price</th>
                                             <th class="">Total Price</th>
                                             <th class=""></th>
-
-
                                         </tr>
-
                                         <tr class="" *ngFor="let row of getCartDetails">
-
-
                                             <td class="cart_image">
                                                 <img src="{{row.imageUrl}}" class="img-fluid rounded-3"
                                                     alt="Cotton T-shirt">
@@ -105,18 +30,14 @@
                                                 <h6 class="text-muted">{{row.title}}</h6>
                                                 <!-- <h6 class="text-black mb-0">Cotton T-shirt</h6> -->
                                             </td>
-
-
                                             <td>
                                                 <div style="display: flex; align-items:center">
                                                     <button class="btn btn-link px-2"
                                                         (click)="dec(row._id, row.quantity)">
                                                         <i class="fas fa-minus"></i>
                                                     </button>
-
                                                     <!-- <input id="form1" min="0" name="quantity"  type="number"
                                                     class="form-control form-control-sm" value="{{row.quanitity}}" /> -->
-
                                                     <b><span
                                                             class="form-control form-control-sm">{{row.quantity}}</span></b>
 
@@ -126,27 +47,18 @@
                                                     </button>
                                                 </div>
                                             </td>
-
                                             <td>
                                                 <h6 class="mb-0">{{row.price}}</h6>
                                             </td>
-
                                             <td>
                                                 <h6 class="mb-0">{{row.quantity * row.price | number}}</h6>
                                             </td>
-
-
-
                                             <td>
                                                 <a (click)="removeItem(getCartDetails.id)" class="text-muted"><i
                                                         class="fas fa-times"></i></a>
                                             </td>
                                         </tr>
-
                                     </table>
-
-
-
                                     <div>
                                         <h6 class="mb-0"><a href="#!" class="text-body"><i
                                                     class="fas fa-long-arrow-alt-left me-1"></i>Back to shop</a></h6>
@@ -166,14 +78,8 @@
                                         <h5 class="text-uppercase">Total price</h5>
                                         <h5>{{alltotal}}</h5>
                                     </div>
-
-
-
-
-
                                     <button type="button" class="btn btn-dark btn-block btn-lg"
                                         data-mdb-ripple-color="dark" routerLink="/checkout">Checkout</button>
-
                                 </div>
                             </div>
                         </div>

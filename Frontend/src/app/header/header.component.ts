@@ -64,7 +64,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
   getCustomerImage(){
     this.customerId = this.authService.getCustomer(this.authService.getUserToken())._id;
     this.userService.getOneUser(this.customerId).subscribe(res=>{
@@ -72,9 +71,7 @@ export class HeaderComponent implements OnInit {
     this.image =this.data.imageUrl;
     this.userService.data.next(this.data)
     });
-
   }
-  
  
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
@@ -85,9 +82,7 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.authService.logout();
     this.router.navigate(['/login']);
-   
-  }
-    
+  }   
 }
 
   // MenuDisplay(){
